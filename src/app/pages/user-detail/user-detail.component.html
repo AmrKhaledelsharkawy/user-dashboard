@@ -1,0 +1,16 @@
+<div class="user-detail">
+  <button mat-button (click)="goBack()">Back</button>
+  <div *ngIf="user$ | async as user">
+    <img [src]="user.avatar" alt="{{user.first_name}}" class="avatar">
+    <h2>{{user.first_name}} {{user.last_name}}</h2>
+    <p>Email: {{user.email}}</p>
+  </div>
+</div>
+<div *ngIf="user$ | async as user; else loading">
+  <h1>{{ user.name }}</h1>
+  <p>{{ user.email }}</p>
+  <!-- other user details -->
+</div>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

@@ -1,0 +1,16 @@
+<div class="user-list-container">
+  <div *ngIf="loading$ | async" class="loading-bar"></div>
+  
+  <div class="user-list">
+    <mat-card *ngFor="let user of users$ | async" (click)="onUserClick(user.id)" class="user-card">
+      <img [src]="user.avatar" alt="{{user.first_name}} {{user.last_name}}" class="user-avatar">
+      <mat-card-content>
+        <h3>{{user.first_name}} {{user.last_name}}</h3>
+        <p>Email: {{user.email}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-paginator [length]="totalUsers" [pageSize]="6" (page)="loadUsers($event.pageIndex + 1)">
+  </mat-paginator>
+</div>
